@@ -1,0 +1,8 @@
+- insert:
+    - id: bili-reach
+      name: '@s0ftnote/bili-reach'
+      config:
+        asr: local
+        language: zh
+        # outputRoot / model / cookieFile 可在当前宿主 profile 的私有配置中覆盖。
+        # 不在公开仓库中写登录态或私有路径；不默认下载模型。

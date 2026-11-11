@@ -1,0 +1,9 @@
+{
+  "output": "./materials",
+  "asr": "local",
+  "keepMedia": false,
+  "language": "zh",
+  "glossary": ["等差数列", "外接圆"],
+  "ffmpegBin": "ffmpeg",
+  "whisperBin": "whisper-cli"
+}
