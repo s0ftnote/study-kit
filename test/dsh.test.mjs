@@ -67,9 +67,9 @@ test('offline registration validates author payload; real host permissions/cance
 });
 
 test('package root self-import exposes apply and independent ./core exposes collect without loading a host SDK', async () => {
-  const root = await import('@s0ftnote/bili-reach');
-  const alias = await import('@s0ftnote/bili-reach/dsh');
-  const core = await import('@s0ftnote/bili-reach/core');
+  const root = await import('@s0ftnote/study-kit');
+  const alias = await import('@s0ftnote/study-kit/dsh');
+  const core = await import('@s0ftnote/study-kit/core');
   assert.equal(typeof root.apply, 'function');
   assert.equal(root.default.apply, root.apply);
   assert.equal(root.apply, alias.apply);

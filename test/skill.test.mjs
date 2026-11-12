@@ -4,7 +4,7 @@ import { readdir, readFile, realpath, stat } from 'node:fs/promises';
 import { dirname, isAbsolute, relative, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { parseArgs, loadOptions, runCli } from '../skills/bili-reach/scripts/cli.mjs';
-import { registerBundledSkill } from '../dsh/index.mjs';
+import { registerBundledSkill, bundledSkills } from '../dsh/index.mjs';
 
 const root = fileURLToPath(new URL('../', import.meta.url));
 const skillDir = resolve(root, 'skills/bili-reach');
@@ -40,10 +40,20 @@ test('Bilibili skill is discoverable from its canonical description', async () =
   assert.notEqual(meta['disable-model-invocation'], 'true');
 });
 
+test('every bundled skill has a canonical name and description', async () => {
+  for (const name of bundledSkills) {
+    const meta = frontmatter(await readFile(resolve(root, 'skills', name, 'SKILL.md'), 'utf8'));
+    assert.equal(meta.name, name);
+    assert.ok(meta.description.length > 0);
+  }
+});
+
 test('skill reference links resolve inside the installed skill, not the repository', async () => {
+  for (const name of bundledSkills) {
+  const skillDir = resolve(root, 'skills', name);
   for (const file of await markdownBelow(skillDir)) {
     const content = await readFile(file, 'utf8');
-    for (const match of content.matchAll(/\[[^\]]*\]\((?:<([^>]+)>|([^\s)]+))\)/g)) {
+    for (const match of content.replace(/`[^`\n]*`/g, "").matchAll(/\[[^\]]*\]\((?:<([^>]+)>|([^\s)]+))\)/g)) {
       const link = match[1] ?? match[2];
       if (/^https?:\/\//.test(link) || link.startsWith('#')) continue;
       const localPath = decodeURIComponent(link.split('#')[0]);
@@ -55,6 +65,7 @@ test('skill reference links resolve inside the installed skill, not the reposito
       }
       assert.ok((await stat(target)).isFile(), `missing reference from ${relative(skillDir, file)}`);
     }
+  }
   }
 });
 
@@ -111,7 +122,7 @@ test('documented supplemental frames command selects frames-only collection with
 test('DSH registers the skill description and resource base from the bundled file', async () => {
   const registrations = [];
   await registerBundledSkill({ skills: { register: skill => registrations.push(skill) } });
-  assert.equal(registrations.length, 1);
+  assert.deepEqual(registrations.map(skill => skill.name), bundledSkills);
   const skill = registrations[0];
   const content = await readFile(skillPath, 'utf8');
   assert.equal(skill.name, frontmatter(content).name);

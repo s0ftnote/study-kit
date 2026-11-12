@@ -7,7 +7,8 @@ import { collect } from '../skills/bili-reach/scripts/pipeline.mjs';
 import { readCookieFile, safeError } from '../skills/bili-reach/scripts/cli.mjs';
 import { doctor } from '../skills/bili-reach/scripts/media.mjs';
 
-export const name = 'bili-reach';
+export const name = 'study-kit';
+export const bundledSkills = ['bili-reach', 'study-wiki', 'study-practice'];
 export const inject = ['tools', 'skills'];
 
 /** Host-only adapter; CLI/core never import the host SDK. Output root is admin config, not a model argument. */
@@ -63,15 +64,17 @@ export async function registerTools(ctx, config = {}, defineTool, services = {})
 }
 
 export async function registerBundledSkill(ctx) {
-  const skillDir = fileURLToPath(new URL('../skills/bili-reach/', import.meta.url));
-  const path = join(skillDir, 'SKILL.md');
-  const content = await readFile(path, 'utf8');
-  // The bundled skill uses plain, single-line frontmatter; keep its trigger in one place.
-  const header = /^---\r?\n([\s\S]*?)\r?\n---(?:\r?\n|$)/.exec(content)?.[1];
-  const description = /^description:[ \t]*(.+)$/m.exec(header ?? '')?.[1]?.trim();
-  if (!description) throw new Error('Bundled skill requires a single-line description.');
-  ctx.skills.register({ name: 'bili-reach', description, content, source: 'bundled', path,
-    resourceBase: { kind: 'directory', path: skillDir } });
+  for (const skill of bundledSkills) {
+    const skillDir = fileURLToPath(new URL(`../skills/${skill}/`, import.meta.url));
+    const path = join(skillDir, 'SKILL.md');
+    const content = await readFile(path, 'utf8');
+    // Bundled skills use plain, single-line frontmatter; keep each trigger in one place.
+    const header = /^---\r?\n([\s\S]*?)\r?\n---(?:\r?\n|$)/.exec(content)?.[1];
+    const description = /^description:[ \t]*(.+)$/m.exec(header ?? '')?.[1]?.trim();
+    if (!description) throw new Error(`Bundled skill ${skill} requires a single-line description.`);
+    ctx.skills.register({ name: skill, description, content, source: 'bundled', path,
+      resourceBase: { kind: 'directory', path: skillDir } });
+  }
 }
 
 export async function apply(ctx, config = {}) {
