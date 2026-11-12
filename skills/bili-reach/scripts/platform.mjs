@@ -11,7 +11,7 @@ const WEB_HOSTS = new Set(['bilibili.com', 'www.bilibili.com', 'm.bilibili.com',
 const CDN_DOMAINS = ['bilibili.com', 'hdslb.com', 'bilivideo.com', 'bilivideo.cn', 'biliapi.net'];
 const MAX_API_BYTES = 4 * 1024 * 1024;
 const MAX_SUBTITLE_BYTES = 16 * 1024 * 1024;
-const UA = 'Mozilla/5.0 (compatible; bili-study-kit/1.0)';
+const UA = 'Mozilla/5.0 (compatible; study-kit/1.0)';
 
 export class BiliError extends Error {
   constructor(code, message = code, details = {}) {

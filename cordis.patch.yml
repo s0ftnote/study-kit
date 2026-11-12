@@ -1,6 +1,6 @@
 - insert:
-    - id: bili-reach
-      name: '@s0ftnote/bili-reach'
+    - id: study-kit
+      name: '@s0ftnote/study-kit'
       config:
         asr: local
         language: zh

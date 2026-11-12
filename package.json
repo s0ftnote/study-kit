@@ -1,8 +1,8 @@
 {
-  "name": "@s0ftnote/bili-reach",
+  "name": "@s0ftnote/study-kit",
   "version": "0.1.0",
   "private": true,
-  "description": "B站课程分析 skill：完整讲稿、按需截图与图文核对。",
+  "description": "学习三件套 skill：B站课程分析（bili-reach）、学习库入库与维护（study-wiki）、练习与错题记录（study-practice）。",
   "type": "module",
   "license": "MIT",
   "engines": { "node": ">=22", "dsh": "^0.2.1-rc.3 || ^0.2.2-rc.1" },
@@ -14,5 +14,5 @@
   "scripts": { "test": "node --test", "check": "node scripts/check.mjs", "doctor": "node skills/bili-reach/scripts/bili-reach.mjs doctor" },
   "peerDependencies": { "@deepseek-ai/dsh-tools": "^0.2.1-rc.3 || ^0.2.2-rc.1" },
   "peerDependenciesMeta": { "@deepseek-ai/dsh-tools": { "optional": true } },
-  "repository": { "type": "git", "url": "https://github.com/s0ftnote/bili-study-kit.git" }
+  "repository": { "type": "git", "url": "https://github.com/s0ftnote/study-kit.git" }
 }
