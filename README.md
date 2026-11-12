@@ -1,51 +1,119 @@
-# bili-reach
+# study-kit
 
-一个 B站课程分析 skill：**先读完整讲稿，再按需查看关键画面，结合口播、板书和图形分析课程。**
+三个配合使用的学习 skill：把网课、卷子、书整理进自己的 Obsidian 学习库；做题卡住时，从这个库里取出对应的讲解和同类题，并记下哪里要重温、下次练什么。
 
-## 安装
+| skill | 做什么 | 写学习库的哪里 |
+|---|---|---|
+| [bili-reach](skills/bili-reach/README.md) | 看懂一节 B 站课：取完整讲稿，按需截图核对板书和题目，讲解或做笔记 | `资料/视频/`（入库时） |
+| [study-wiki](skills/study-wiki/README.md) | 把资料整理成来源页、知识点、题目，挂进学科总览；查找、检查、生成导图 | `资料/`、`知识/` |
+| [study-practice](skills/study-practice/README.md) | 看作答、找卡点、取讲解和同类题，记错题本和进度，排今天练什么 | `练习/` |
 
-通过 [skills CLI](https://github.com/vercel-labs/skills#install-a-skill) 安装：
+三个 skill 各管一块，互相只通过学习库里的文件打交道。bili-reach 也可以单独用来分析任何一节 B 站课。
+
+## 一键安装
+
+需要 Node.js 22.20+。用 [skills CLI](https://github.com/vercel-labs/skills) 安装：
 
 ```sh
-npx skills add s0ftnote/bili-study-kit --skill bili-reach
+# 三个一起装（会问你装给哪个 agent）
+npx skills add s0ftnote/study-kit --skill '*'
+
+# 只装其中一个
+npx skills add s0ftnote/study-kit --skill bili-reach
+
+# 装到用户目录，所有项目都能用；-a 指定 agent
+npx skills add s0ftnote/study-kit --skill '*' -g -a claude-code
 ```
 
-## 使用
+装好后对 agent 说“帮我建一个学习库”，然后用 Obsidian 打开那个文件夹。
 
-安装后，直接对你的 agent 说：
-
-> 分析这节 B站课：<视频链接>。先读完整讲稿，遇到板书或图形就看对应画面，帮我梳理讲解和例题。
-
-也可以只提具体要求：
-
-- “取这条视频第 3 P 的完整讲稿。”
-- “解释 12 分钟附近这道题，结合板书看。”
-- “把这节课整理成带原片时间链接的学习资料。”
-
-## 处理流程
+## 全景
 
 ```mermaid
-flowchart TD
-    A[视频链接与学习要求] --> B[Skill 确认任务和分 P]
-    B --> C{有可用字幕吗}
-    C -->|有| D[取得字幕全文和时间轴]
-    C -->|明确无字幕| E[本地 Whisper 转写]
-    D --> F[Agent 读稿分析讲解与例题]
-    E --> F
-    B -->|已有讲稿，直接复用| F
-    F --> G{需要核对板书或图形吗}
-    G -->|需要| H[按对应时间截取关键画面]
-    H --> I[Agent 看图并结合讲稿核对]
-    I --> K{画面条件是否清楚}
-    K -->|看不清，补一轮| H
-    K -->|已核对或缺口已说明| J[交付解释、课程资料和原片位置]
-    G -->|不需要| J
+flowchart LR
+    subgraph SRC[来源]
+        V[B 站网课]
+        P[卷子]
+        B[书与讲义]
+        A[自己的作答]
+    end
+    subgraph SK[study-kit]
+        BR[bili-reach<br/>取稿、看图、讲课]
+        SW[study-wiki<br/>入库与维护]
+        SP[study-practice<br/>练习与错题]
+    end
+    subgraph LIB[学习库：一个 Obsidian 文件夹]
+        R["资料/<br/>原件"]
+        K["知识/<br/>来源页、知识点、题目、总览、导图"]
+        X["练习/<br/>记录、错题本、进度"]
+    end
+    V --> BR --> R
+    P --> SW
+    B --> SW
+    R --> SW --> K
+    A --> SP
+    K -- 讲解、出处、同类题 --> SP
+    SP --> X
+    X -- 今天练什么 --> A
 ```
 
-**Skill 串起流程，随附脚本负责取稿和截图，agent 负责分析和识图。** 只取稿或只截图可在对应步骤结束；要入库时再交给通用入库流程。
+左边是**资料整合**：各种来源整理成一张知识网。右边是**资料复用**：做题时把知识网里的讲解和题目取出来用，并记下掌握情况。两条线在 `知识/` 接上。
+
+## 平时只说三句话
+
+```mermaid
+flowchart LR
+    S1["① 把这个加进去"] --> W[study-wiki 入库<br/>B 站视频先经 bili-reach 取稿]
+    S2["② 这是我做的，帮我看看"] --> P[study-practice 看作答<br/>取讲解、给提示、记错题]
+    S3["③ 今天练什么"] --> T[study-practice 排题<br/>到期复测优先]
+    T -. 做完 .-> S2
+```
+
+库不用先建完再开始做题：做题时发现缺哪块讲解，再把对应的课或书加进去。
+
+## 学习库
+
+```text
+学习库/
+├── 库规则.md       # 目录、命名、每种笔记的模板；想改格式就改这一份
+├── 首页.md
+├── 日志.md
+├── 资料/           # 原件：视频讲稿和截图、卷子、书和讲义，放进来保持原样
+├── 知识/<学科>/    # study-wiki 写：总览、导图、来源/、知识点/、题目/
+└── 练习/           # study-practice 写：进度.md、错题本.md、记录/
+```
+
+| 笔记 | 一页是什么 |
+|---|---|
+| 来源页 | 一份资料：讲了什么、在哪里（视频时间、页码、题号） |
+| 知识点 | 一个概念或方法：讲解、例题、容易错的地方、出处 |
+| 题目 | 一道题：题干和图，答案、解析折叠在下面 |
+| 学科总览 | 一科的目录：章节 → 专题 → 知识点 |
+| 错题本 / 进度 | 没做对的题和复测日期；每个练过的知识点是“要重温”还是“会了” |
+
+格式只写在学习库根目录的 `库规则.md` 一处，模板在 [`skills/study-wiki/assets/学习库模板/`](skills/study-wiki/assets/学习库模板/库规则.md)。想换格式改它，想改流程改对应的 `SKILL.md`。
+
+## 仓库结构
+
+```text
+study-kit/
+├── skills/
+│   ├── bili-reach/       # SKILL.md、references/、scripts/（取稿与截图脚本）
+│   ├── study-wiki/       # SKILL.md、references/、scripts/mindmap.mjs、assets/学习库模板/
+│   └── study-practice/   # SKILL.md
+├── dsh/                  # DSH 插件：注册三个 skill 和 bili_material 工具
+├── docs/                 # bili-reach 的需求边界与定制指南
+└── test/                 # 离线测试：npm test
+```
+
+每个 skill 目录自成一体，可以单独复制到任何支持 `SKILL.md` 的 agent 的 skills 目录里用。
 
 ## 使用条件
 
-安装使用需要 Node.js 22.20+；截图需 FFmpeg，无字幕时的本地转写另需 whisper.cpp 和模型；看图核对需要能读图片的 agent。skill 自带脚本，无需另行克隆整个项目。
+- bili-reach：截图需要 FFmpeg；没有字幕的视频本地转写需要 whisper.cpp 和模型；看图核对需要能读图片的 agent。
+- study-wiki、study-practice：需要能读写本地文件夹的 agent；导图脚本只要 Node.js。
+- 学习库就是你电脑上的一个普通文件夹，不依赖任何云服务。
 
-一次处理一个分 P，保留取得的全文与时间轴；不清楚的地方标疑问、回看原片。模型、登录态等按需配置见[取材说明](<skills/bili-reach/references/acquisition.md>)。
+## 许可证
+
+MIT。bili-reach 引用的第三方代码见 [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md)。
