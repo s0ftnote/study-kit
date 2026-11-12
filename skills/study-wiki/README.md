@@ -31,6 +31,8 @@ B 站视频入库要用到 `bili-reach`，建议三个一起装：`npx skills ad
 
 ## 学习库长什么样
 
+![学习库在 Obsidian 里的样子：左边文件树分资料、知识、练习三个区，中间是一页知识点，右边是关系图谱](https://raw.githubusercontent.com/s0ftnote/study-kit/main/docs/images/vault.svg)
+
 ```text
 学习库/
 ├── 库规则.md       # 目录、命名、每种笔记的模板；想改格式就改这一份

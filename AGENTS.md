@@ -7,7 +7,7 @@
 - 分工按学习库的区来：`study-wiki` 写 `资料/`、`知识/` 和 `日志.md`，`study-practice` 只写 `练习/`，`bili-reach` 只产出资料包和讲解，不写 `知识/` 和 `练习/`。三者只通过学习库里的文件打交道。
 - 笔记格式只写在 `skills/study-wiki/assets/学习库模板/库规则.md` 一处；`SKILL.md` 只写流程。状态词（`要重温`、`会了`）和总览的“来源”小节名，`study-practice` 和 `scripts/mindmap.mjs` 也在用，改要一起改。
 - 流程是默认走法，不是关卡。改了流程或结构，同步根 `README.md` 和该 skill `README.md` 里的图和表。
-- README 里的图是 [fireworks-tech-graph](https://github.com/yizhiyanhua-ai/fireworks-tech-graph) 的 Style 5 生成的动态 SVG，源 JSON 和静态 SVG 在 `docs/images/src/`。改图就改 JSON，用它的 `fireworks.py render agent` 出静态 SVG，再用 `python3 docs/images/src/animate.py <静态.svg> docs/images/<名字>.svg <名字>` 加上流动动画（每条边第几拍亮，写在脚本的 `STAGES` 里，加减边要同步改），别手改 `docs/images/` 下的 SVG。全景图 `overview.svg` 例外，它由 `python3 docs/images/src/overview.py docs/images/overview.svg` 直接生成，版式、配色与宣传片的总览一幕一致，改内容改脚本里的常量。skill 目录里的 README 用 `raw.githubusercontent.com` 的完整链接引用这些图。
+- README 里的图是 [fireworks-tech-graph](https://github.com/yizhiyanhua-ai/fireworks-tech-graph) 的 Style 5 生成的动态 SVG，源 JSON 和静态 SVG 在 `docs/images/src/`。改图就改 JSON，用它的 `fireworks.py render agent` 出静态 SVG，再用 `python3 docs/images/src/animate.py <静态.svg> docs/images/<名字>.svg <名字>` 加上流动动画（每条边第几拍亮，写在脚本的 `STAGES` 里，加减边要同步改），别手改 `docs/images/` 下的 SVG。渲染器路由绕不开的地方（全景图里两条竖线、学习库标题的位置）写在 `animate.py` 的 `PATH_FIX` 和 `HEADER_AT`，改了节点坐标要跟着核对。学习库效果图 `vault.svg` 不是流程图，由 `python3 docs/images/src/vault.py docs/images/vault.svg` 生成，示例页的格式照 `库规则.md`，模板改了它也要改。skill 目录里的 README 用 `raw.githubusercontent.com` 的完整链接引用这些图。
 - 每个 skill 目录要能单独安装：目录内的链接只指向本目录里的文件，指向仓库其他位置用 GitHub 完整链接（`test/skill.test.mjs` 会检查）。
 - 测试、示例和提交中不含 cookie、私有配置、课堂材料或学生作答。
 
