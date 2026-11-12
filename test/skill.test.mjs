@@ -3,7 +3,7 @@ import assert from 'node:assert/strict';
 import { readdir, readFile, realpath, stat } from 'node:fs/promises';
 import { dirname, isAbsolute, relative, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
-import { parseArgs, loadOptions } from '../skills/bili-reach/scripts/cli.mjs';
+import { parseArgs, loadOptions, runCli } from '../skills/bili-reach/scripts/cli.mjs';
 import { registerBundledSkill } from '../dsh/index.mjs';
 
 const root = fileURLToPath(new URL('../', import.meta.url));
@@ -33,7 +33,10 @@ function frontmatter(content) {
 test('Bilibili skill is discoverable from its canonical description', async () => {
   const meta = frontmatter(await readFile(skillPath, 'utf8'));
   assert.equal(meta.name, 'bili-reach');
-  assert.ok(meta.description.length > 0);
+  assert.match(meta.description, /分析/);
+  assert.match(meta.description, /讲解/);
+  assert.match(meta.description, /讲稿/);
+  assert.match(meta.description, /截图/);
   assert.notEqual(meta['disable-model-invocation'], 'true');
 });
 
@@ -75,6 +78,34 @@ test('documented skill CLI commands parse without network, models or credentials
     }
   }
   assert.ok(checked >= 6, 'main flow and acquisition branches must have checked examples');
+});
+
+test('documented supplemental frames command selects frames-only collection with refresh', async () => {
+  const content = await readFile(resolve(skillDir, 'references/acquisition.md'), 'utf8');
+  const line = content.split(/\r?\n/).find(line => line.startsWith('node ') && line.includes(' frames ') && line.includes('--refresh'));
+  assert.ok(line, 'supplemental frames must have an executable example');
+  const tokens = [...line.matchAll(/'([^']*)'|"([^"]*)"|([^\s]+)/g)].map(match => match[1] ?? match[2] ?? match[3]);
+  const args = tokens.slice(2).map(arg => arg.replace(/<P>/g, '2')
+    .replace(/<BV或URL>/g, 'BV1GJ411x7h7').replace(/<[^>]+>/g, '/private/fixture'));
+  let calls = 0, output = '';
+  const code = await runCli(args, {
+    stdout: value => { output += value; },
+    clientFactory: () => ({ inspect: () => assert.fail('CLI must not add a separate inspect before collection') }),
+    doctorFn: () => assert.fail('supplemental frames must not invoke ASR environment checks'),
+    collector: async (input, options) => {
+      calls++;
+      assert.equal(input, 'BV1GJ411x7h7');
+      assert.equal(options.kind, 'frames');
+      assert.equal(options.part, 2);
+      assert.equal(options.refresh, true);
+      assert.deepEqual(options.frames, [32, 92]);
+      assert.equal(options.model, undefined);
+      return { ok: true, status: 'complete' };
+    },
+  });
+  assert.equal(code, 0, output);
+  assert.equal(calls, 1);
+  assert.equal(JSON.parse(output).status, 'complete');
 });
 
 test('DSH registers the skill description and resource base from the bundled file', async () => {

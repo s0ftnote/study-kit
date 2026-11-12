@@ -28,13 +28,13 @@ inspect 的 video 包含 bvid、aid、cid、part（从 1 开始）、partTitle�
     failure.json                 # 已建立 run 后的失败记录
 ```
 
-默认只长期保留原始字幕/ASR JSON、规范转写、所需图片、清单与简短待审入口。下载媒体、WAV、重复的 Whisper 输出属于本次中间文件，默认清理；显式 keepMedia 才保留。清理仅限函数本次新建目录中的自有文件，不扫描或删除旧 run、用户文件或已有课程材料。失败也尽力清理本次大媒体；失败材料不能冒充完整资料。
+默认只长期保留原始字幕/ASR JSON、规范转写、所需图片、清单与简短待审入口。下载媒体、WAV、重复的 Whisper 输出属于本次中间文件，默认清理；显式 keepMedia 才保留。清理仅限函数本次新建目录中的自有文件，不扫描或删除旧 run、用户文件或已有课程材料。失败时也尽力清理本次大媒体，保留失败记录及已有证据。
 
 transcript.json 为 `{schemaVersion:1,video,source,segments}`。segments 使用 `{start,end,text}`，单位秒；时间须有限、非负、end > start，按 start 非递减，不显著超出视频时长。source 区分 platform-subtitle/local-asr；截图任务为 video-frames。保留实际 provider、language 和适用的 track/model；原稿不经 LLM 改写。
 
 manifest 包含 schemaVersion、kind、tool、status、runId、createdAt、video、source、coverage、frames、files、review、retention。截图任务没有 transcript，coverage 为 null；不能宣称读过或核对过正文。转写 coverage 报告首尾时间，不是完整率或准确率。
 
-frames 为 `{time,path,url}[]`，path 相对 run，url 保留 P 并定位原片时间。files 为该 run 所有保留的不可变证据 `{path,sha256}[]`，包括选择保留的大媒体；哈希流式计算。review.md 可人工编辑，不进入不可变哈希；它不要求查整个知识库，不预填没有内容的章节。实际需要整理时由 agent 按证据补充。
+frames 为 `{time,path,url}[]`，path 相对 run，url 保留 P 并定位原片时间。files 为该 run 所有保留的不可变证据 `{path,sha256}[]`，包括选择保留的大媒体；哈希流式计算。review.md 可人工编辑，不进入不可变哈希；由 agent 按请求和证据补充内容。
 
 ## 发布与复用
 
@@ -44,7 +44,7 @@ frames 为 `{time,path,url}[]`，path 相对 run，url 保留 P 并定位原片�
 - 缺文件、坏索引、被改的不可变证据不能缓存成功。旧版本未列出的媒体不会被自动删除，也不会追溯宣称已完整验证；需要新策略时显式重取。
 - .lock 保护同来源并发。进程崩溃可能留锁；确认没有任务运行后由用户手动处理。程序不猜测或删除别人的锁。
 
-输出根默认 materials，由用户选择；runDir/manifestPath 为当前机器定位路径，稳定引用使用来源身份和 runId。课程资料只进入私有来源/待审区域，不自动写主库或改变个人学习状态。
+输出根默认 materials，由用户选择；runDir/manifestPath 为当前机器定位路径，稳定引用使用来源身份和 runId。采集产物写入私有材料目录，入库由后续流程处理。
 
 ## 不可信数据
 
