@@ -25,21 +25,7 @@ B 站视频入库要用到 `bili-reach`，建议三个一起装：`npx skills ad
 
 ## 入库流程
 
-```mermaid
-flowchart TD
-    S[链接、文件或照片] --> T{是什么资料}
-    T -- B 站视频 --> BR[bili-reach 取稿<br/>放进 资料/视频]
-    T -- 卷子、书、讲义 --> F[原件放进 资料/]
-    BR --> RD
-    F --> RD[读这次要入库的范围<br/>公式和图以原件为准]
-    RD --> CK{总览里已经有<br/>这个知识点吗}
-    CK -- 有 --> AD[补出处和例题]
-    CK -- 没有 --> NW[新建知识点]
-    AD --> W
-    NW --> W[写来源页和题目<br/>更新总览、日志]
-    W --> M[层级变了就重新生成导图]
-    M --> E[告诉你：新建了什么、更新了什么、哪里待核对]
-```
+![study-wiki 入库流程：放原件、读与查、写页面](https://raw.githubusercontent.com/s0ftnote/study-kit/main/docs/images/wiki.png)
 
 几条原则：先找后建，同一个东西全库只有一页；每条讲解带出处（视频时间、页码、题号）；看不清的记成待核对；入库不改掌握进度，进度只由 `study-practice` 根据作答来记。
 

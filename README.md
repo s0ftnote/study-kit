@@ -29,45 +29,17 @@ npx skills add s0ftnote/study-kit --skill '*' -g -a claude-code
 
 ## 全景
 
-```mermaid
-flowchart LR
-    subgraph SRC[来源]
-        V[B 站网课]
-        P[卷子]
-        B[书与讲义]
-        A[自己的作答]
-    end
-    subgraph SK[study-kit]
-        BR[bili-reach<br/>取稿、看图、讲课]
-        SW[study-wiki<br/>入库与维护]
-        SP[study-practice<br/>练习与错题]
-    end
-    subgraph LIB[学习库：一个 Obsidian 文件夹]
-        R["资料/<br/>原件"]
-        K["知识/<br/>来源页、知识点、题目、总览、导图"]
-        X["练习/<br/>记录、错题本、进度"]
-    end
-    V --> BR --> R
-    P --> SW
-    B --> SW
-    R --> SW --> K
-    A --> SP
-    K -- 讲解、出处、同类题 --> SP
-    SP --> X
-    X -- 今天练什么 --> A
-```
+![study-kit 全景：来源经三个 skill 进入学习库的 资料/、知识/、练习/ 三个区](docs/images/overview.png)
 
 左边是**资料整合**：各种来源整理成一张知识网。右边是**资料复用**：做题时把知识网里的讲解和题目取出来用，并记下掌握情况。两条线在 `知识/` 接上。
 
 ## 平时只说三句话
 
-```mermaid
-flowchart LR
-    S1["① 把这个加进去"] --> W[study-wiki 入库<br/>B 站视频先经 bili-reach 取稿]
-    S2["② 这是我做的，帮我看看"] --> P[study-practice 看作答<br/>取讲解、给提示、记错题]
-    S3["③ 今天练什么"] --> T[study-practice 排题<br/>到期复测优先]
-    T -. 做完 .-> S2
-```
+| 你说 | 谁来做 |
+|---|---|
+| ① “把这个加进去” | `study-wiki` 入库；B 站视频先经 `bili-reach` 取稿 |
+| ② “这是我做的，帮我看看” | `study-practice` 看作答：取讲解、给提示、记错题 |
+| ③ “今天练什么” | `study-practice` 排题，到期复测优先；做完回到 ② |
 
 库不用先建完再开始做题：做题时发现缺哪块讲解，再把对应的课或书加进去。
 
@@ -102,7 +74,7 @@ study-kit/
 │   ├── study-wiki/       # SKILL.md、references/、scripts/mindmap.mjs、assets/学习库模板/
 │   └── study-practice/   # SKILL.md
 ├── dsh/                  # DSH 插件：注册三个 skill 和 bili_material 工具
-├── docs/                 # bili-reach 的需求边界与定制指南
+├── docs/                 # bili-reach 的需求边界与定制指南；images/ 是 README 里的图
 └── test/                 # 离线测试：npm test
 ```
 

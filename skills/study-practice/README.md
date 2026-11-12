@@ -25,31 +25,11 @@ npx skills add s0ftnote/study-kit --skill study-practice
 
 ## 看作答
 
-```mermaid
-flowchart TD
-    S[发来作答，或说卡住了] --> Q[认题，记下原始作答<br/>题不在库里也先帮你]
-    Q --> L[先听你说卡在哪]
-    L --> C[对答案<br/>库里没有答案就标明是 AI 判断]
-    C --> K{库里有这个<br/>知识点的讲解吗}
-    K -- 有 --> EX[给出那段讲解和出处<br/>视频时间、页码]
-    K -- 没有 --> AI[AI 自己讲，说明不是出自资料<br/>建议补哪类资料]
-    EX --> H
-    AI --> H[从小的提示给起，让你再试]
-    H --> SM[同类题：先找库里的]
-    SM --> RC[记进练习记录、错题本、进度<br/>排下次复测]
-```
+![study-practice 看作答：看作答、回到资料、再练一次，记下来并排复测](https://raw.githubusercontent.com/s0ftnote/study-kit/main/docs/images/practice.png)
 
 ## 掌握情况怎么变
 
-```mermaid
-stateDiagram-v2
-    [*] --> 没练过
-    没练过 --> 要重温: 没做对，或提示后才做对
-    没练过 --> 会了: 第一次就独立做对
-    要重温 --> 要重温: 复测又错，3 天后再测
-    要重温 --> 会了: 名下错题都过关（隔 3 天、7 天各独立做对一次）
-    会了 --> 要重温: 之后做错
-```
+![掌握情况：没练过、要重温、会了三种状态之间怎么变](https://raw.githubusercontent.com/s0ftnote/study-kit/main/docs/images/states.png)
 
 状态只跟着作答变：看过讲解、资料入了库、说“我懂了”，都不改进度。复测间隔写在学习库的 `库规则.md` 里，可以改。
 

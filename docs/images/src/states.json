@@ -1,0 +1,106 @@
+{
+ "schema_version": 1,
+ "mode": "agent",
+ "template_type": "agent",
+ "style": 5,
+ "quality_profile": "standard",
+ "text_policy": "strict",
+ "width": 1000,
+ "height": 500,
+ "title": "掌握情况怎么变",
+ "subtitle": "只有三种状态，只跟着作答变",
+ "containers": [],
+ "nodes": [
+  {
+   "id": "none",
+   "kind": "rect",
+   "x": 60,
+   "y": 230,
+   "width": 240,
+   "height": 64,
+   "label": "没练过",
+   "sublabel": "总览里有、进度里没有",
+   "fill": "rgba(255,255,255,0.10)",
+   "stroke": "#8b949e"
+  },
+  {
+   "id": "weak",
+   "kind": "rect",
+   "x": 560,
+   "y": 130,
+   "width": 240,
+   "height": 64,
+   "label": "要重温",
+   "sublabel": "复测又错：3 天后再测",
+   "fill": "rgba(255,255,255,0.10)",
+   "stroke": "#f59e0b"
+  },
+  {
+   "id": "ok",
+   "kind": "rect",
+   "x": 560,
+   "y": 330,
+   "width": 240,
+   "height": 64,
+   "label": "会了",
+   "sublabel": "不再排复测",
+   "fill": "rgba(255,255,255,0.10)",
+   "stroke": "#3fb950"
+  }
+ ],
+ "arrows": [
+  {
+   "id": "t1",
+   "source": "none",
+   "target": "weak",
+   "source_port": "right",
+   "target_port": "left",
+   "flow": "feedback",
+   "label": "没做对，或提示后才对"
+  },
+  {
+   "id": "t2",
+   "source": "none",
+   "target": "ok",
+   "source_port": "right",
+   "target_port": "left",
+   "flow": "write",
+   "label": "第一次就独立做对"
+  },
+  {
+   "id": "t3",
+   "source": "weak",
+   "target": "ok",
+   "source_port": "bottom",
+   "target_port": "top",
+   "flow": "write",
+   "label": "名下错题都过关"
+  },
+  {
+   "id": "t4",
+   "source": "ok",
+   "target": "weak",
+   "source_port": "right",
+   "target_port": "right",
+   "flow": "feedback",
+   "label": "之后做错"
+  }
+ ],
+ "legend_orientation": "horizontal",
+ "legend_x": 48,
+ "legend_y": 420,
+ "legend_locked": false,
+ "legend": [
+  {
+   "flow": "write",
+   "label": "做对"
+  },
+  {
+   "flow": "feedback",
+   "label": "做错或靠提示"
+  }
+ ],
+ "footer": "过关 = 隔 3 天、7 天各独立做对一次；间隔写在 库规则.md，可以改",
+ "footer_x": 48,
+ "footer_y": 470
+}

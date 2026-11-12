@@ -1,0 +1,258 @@
+{
+ "schema_version": 1,
+ "mode": "agent",
+ "template_type": "agent",
+ "style": 5,
+ "quality_profile": "showcase",
+ "text_policy": "strict",
+ "width": 1100,
+ "height": 730,
+ "title": "study-kit 全景",
+ "subtitle": "左边把资料整合成知识网，右边做题时把它取出来用；两条线在 知识/ 接上",
+ "containers": [
+  {
+   "id": "src",
+   "x": 40,
+   "y": 110,
+   "width": 960,
+   "height": 120,
+   "label": "来源",
+   "stroke": "rgba(255,255,255,0.20)",
+   "fill": "rgba(255,255,255,0.04)"
+  },
+  {
+   "id": "kit",
+   "x": 40,
+   "y": 290,
+   "width": 960,
+   "height": 130,
+   "label": "三个 skill",
+   "stroke": "rgba(255,255,255,0.20)",
+   "fill": "rgba(255,255,255,0.04)"
+  },
+  {
+   "id": "lib",
+   "x": 40,
+   "y": 480,
+   "width": 960,
+   "height": 140,
+   "label": "学习库",
+   "stroke": "rgba(255,255,255,0.20)",
+   "fill": "rgba(255,255,255,0.04)"
+  }
+ ],
+ "nodes": [
+  {
+   "id": "video",
+   "kind": "speech",
+   "x": 90,
+   "y": 148,
+   "width": 220,
+   "height": 56,
+   "label": "B 站网课",
+   "sublabel": "视频链接",
+   "fill": "rgba(255,255,255,0.10)",
+   "stroke": "#58a6ff",
+   "flat": true
+  },
+  {
+   "id": "paper",
+   "kind": "rect",
+   "x": 410,
+   "y": 148,
+   "width": 220,
+   "height": 56,
+   "label": "卷子 · 书 · 讲义",
+   "sublabel": "文件或照片",
+   "fill": "rgba(255,255,255,0.10)",
+   "stroke": "#bc8cff"
+  },
+  {
+   "id": "answer",
+   "kind": "speech",
+   "x": 730,
+   "y": 148,
+   "width": 220,
+   "height": 56,
+   "label": "自己的作答",
+   "sublabel": "做完的题、卡住的题",
+   "fill": "rgba(255,255,255,0.10)",
+   "stroke": "#f59e0b",
+   "flat": true
+  },
+  {
+   "id": "bili",
+   "kind": "double_rect",
+   "x": 90,
+   "y": 330,
+   "width": 220,
+   "height": 62,
+   "type_label": "取稿 · 看图 · 讲课",
+   "label": "bili-reach",
+   "fill": "rgba(255,255,255,0.12)",
+   "stroke": "#58a6ff"
+  },
+  {
+   "id": "wiki",
+   "kind": "double_rect",
+   "x": 410,
+   "y": 330,
+   "width": 220,
+   "height": 62,
+   "type_label": "入库与维护",
+   "label": "study-wiki",
+   "fill": "rgba(255,255,255,0.12)",
+   "stroke": "#bc8cff"
+  },
+  {
+   "id": "practice",
+   "kind": "double_rect",
+   "x": 730,
+   "y": 330,
+   "width": 220,
+   "height": 62,
+   "type_label": "练习与错题",
+   "label": "study-practice",
+   "fill": "rgba(255,255,255,0.12)",
+   "stroke": "#f59e0b"
+  },
+  {
+   "id": "raw",
+   "kind": "rect",
+   "x": 90,
+   "y": 522,
+   "width": 220,
+   "height": 66,
+   "label": "资料/",
+   "sublabel": "原件，保持原样",
+   "fill": "rgba(255,255,255,0.08)",
+   "stroke": "#58a6ff"
+  },
+  {
+   "id": "know",
+   "kind": "rect",
+   "x": 410,
+   "y": 522,
+   "width": 220,
+   "height": 66,
+   "label": "知识/",
+   "sublabel": "来源页 · 知识点 · 题目 · 总览",
+   "fill": "rgba(255,255,255,0.08)",
+   "stroke": "#bc8cff"
+  },
+  {
+   "id": "log",
+   "kind": "rect",
+   "x": 730,
+   "y": 522,
+   "width": 220,
+   "height": 66,
+   "label": "练习/",
+   "sublabel": "记录 · 错题本 · 进度",
+   "fill": "rgba(255,255,255,0.08)",
+   "stroke": "#f59e0b"
+  }
+ ],
+ "arrows": [
+  {
+   "id": "a1",
+   "source": "video",
+   "target": "bili",
+   "source_port": "bottom",
+   "target_port": "top",
+   "flow": "read"
+  },
+  {
+   "id": "a2",
+   "source": "paper",
+   "target": "wiki",
+   "source_port": "bottom",
+   "target_port": "top",
+   "flow": "read"
+  },
+  {
+   "id": "a3",
+   "source": "answer",
+   "target": "practice",
+   "source_port": "bottom",
+   "target_port": "top",
+   "flow": "read"
+  },
+  {
+   "id": "a4",
+   "source": "bili",
+   "target": "raw",
+   "source_port": "bottom",
+   "target_port": "top",
+   "flow": "write",
+   "label": "资料包"
+  },
+  {
+   "id": "a5",
+   "source": "raw",
+   "target": "wiki",
+   "source_port": "right",
+   "target_port": "left",
+   "flow": "read",
+   "label": "读原件"
+  },
+  {
+   "id": "a6",
+   "source": "wiki",
+   "target": "know",
+   "source_port": "bottom",
+   "target_port": "top",
+   "flow": "write",
+   "label": "整理"
+  },
+  {
+   "id": "a7",
+   "source": "know",
+   "target": "practice",
+   "source_port": "right",
+   "target_port": "left",
+   "flow": "read",
+   "label": "讲解 · 出处 · 同类题",
+   "label_dx": 128
+  },
+  {
+   "id": "a8",
+   "source": "practice",
+   "target": "log",
+   "source_port": "bottom",
+   "target_port": "top",
+   "flow": "write",
+   "label": "记录"
+  },
+  {
+   "id": "a9",
+   "source": "log",
+   "target": "answer",
+   "source_port": "right",
+   "target_port": "right",
+   "flow": "feedback",
+   "label": "今天练什么"
+  }
+ ],
+ "legend_orientation": "horizontal",
+ "legend_x": 48,
+ "legend_y": 650,
+ "legend_locked": false,
+ "legend": [
+  {
+   "flow": "read",
+   "label": "读取"
+  },
+  {
+   "flow": "write",
+   "label": "写进学习库"
+  },
+  {
+   "flow": "feedback",
+   "label": "复测循环"
+  }
+ ],
+ "footer": "资料进来，知识连起来，练习跟上去",
+ "footer_x": 48,
+ "footer_y": 700
+}
