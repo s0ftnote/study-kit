@@ -29,7 +29,7 @@ npx skills add s0ftnote/study-kit --skill '*' -g -a claude-code
 
 ## 全景
 
-![study-kit 全景：来源经三个 skill 进入学习库的 资料/、知识/、练习/ 三个区](docs/images/overview.png)
+![study-kit 全景：来源经三个 skill 进入学习库的 资料/、知识/、练习/ 三个区](docs/images/overview.svg)
 
 左边是**资料整合**：各种来源整理成一张知识网。右边是**资料复用**：做题时把知识网里的讲解和题目取出来用，并记下掌握情况。两条线在 `知识/` 接上。
 
