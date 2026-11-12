@@ -25,7 +25,7 @@ B 站视频入库要用到 `bili-reach`，建议三个一起装：`npx skills ad
 
 ## 入库流程
 
-![study-wiki 入库流程：放原件、读与查、写页面](https://raw.githubusercontent.com/s0ftnote/study-kit/main/docs/images/wiki.png)
+![study-wiki 入库流程：放原件、读与查、写页面](https://raw.githubusercontent.com/s0ftnote/study-kit/main/docs/images/wiki.svg)
 
 几条原则：先找后建，同一个东西全库只有一页；每条讲解带出处（视频时间、页码、题号）；看不清的记成待核对；入库不改掌握进度，进度只由 `study-practice` 根据作答来记。
 

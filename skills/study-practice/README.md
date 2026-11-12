@@ -25,11 +25,11 @@ npx skills add s0ftnote/study-kit --skill study-practice
 
 ## 看作答
 
-![study-practice 看作答：看作答、回到资料、再练一次，记下来并排复测](https://raw.githubusercontent.com/s0ftnote/study-kit/main/docs/images/practice.png)
+![study-practice 看作答：看作答、回到资料、再练一次，记下来并排复测](https://raw.githubusercontent.com/s0ftnote/study-kit/main/docs/images/practice.svg)
 
 ## 掌握情况怎么变
 
-![掌握情况：没练过、要重温、会了三种状态之间怎么变](https://raw.githubusercontent.com/s0ftnote/study-kit/main/docs/images/states.png)
+![掌握情况：没练过、要重温、会了三种状态之间怎么变](https://raw.githubusercontent.com/s0ftnote/study-kit/main/docs/images/states.svg)
 
 状态只跟着作答变：看过讲解、资料入了库、说“我懂了”，都不改进度。复测间隔写在学习库的 `库规则.md` 里，可以改。
 

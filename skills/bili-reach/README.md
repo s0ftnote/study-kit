@@ -25,7 +25,7 @@ npx skills add s0ftnote/study-kit --skill bili-reach
 
 ## 处理流程
 
-![bili-reach 处理流程：取稿、读稿、按需看图，再回答或交给 study-wiki](https://raw.githubusercontent.com/s0ftnote/study-kit/main/docs/images/bili.png)
+![bili-reach 处理流程：取稿、读稿、按需看图，再回答或交给 study-wiki](https://raw.githubusercontent.com/s0ftnote/study-kit/main/docs/images/bili.svg)
 
 skill 串起流程，随附脚本负责取稿和截图，agent 负责读稿、看图和讲解。只取稿或只截图时到对应步骤结束。
 

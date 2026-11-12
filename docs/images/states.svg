@@ -1,0 +1,95 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 500" width="1000" height="500" data-generator="fireworks-tech-graph" data-schema-version="1" data-text-metrics="heuristic-v1" data-style-id="5" data-visual-theme="Glassmorphism" data-diagram-type="agent" data-motion-scene="" data-semantic-profile="generic" data-semantic-valid="true" data-quality-profile="standard" data-max-bends-per-edge="12" data-max-total-bends="100" data-max-route-stretch="5.0" data-max-bridged-crossings="8" data-min-node-gap="0.0" data-min-container-gutter="0.0" data-min-label-clearance="2.0" data-min-segment-length="0.0">
+  <defs>
+    <marker id="arrowA" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#c084fc"/>
+    </marker>
+    <marker id="arrowB" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#34d399"/>
+    </marker>
+    <marker id="arrowC" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#60a5fa"/>
+    </marker>
+    <marker id="arrowE" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#fb923c"/>
+    </marker>
+    <marker id="arrowF" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#f472b6"/>
+    </marker>
+    <marker id="arrowG" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#f59e0b"/>
+    </marker>
+    <marker id="arrowH" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#cbd5e1"/>
+    </marker>
+    <filter id="shadowSoft" x="-20%" y="-20%" width="140%" height="160%">
+      <feDropShadow dx="0" dy="3" stdDeviation="6" flood-color="#0f172a" flood-opacity="0.12"/>
+    </filter>
+    <filter id="shadowGlass" x="-20%" y="-20%" width="140%" height="160%">
+      <feDropShadow dx="0" dy="10" stdDeviation="16" flood-color="#020617" flood-opacity="0.28"/>
+    </filter>
+    <style>
+    text { font-family: 'Helvetica Neue', Helvetica, Arial, 'PingFang SC', 'Noto Sans CJK SC', 'Microsoft YaHei', 'Microsoft JhengHei', 'SimHei', sans-serif; }
+    .title { font-size: 30px; font-weight: 700; fill: #f8fafc; }
+    .subtitle { font-size: 14px; font-weight: 500; fill: #cbd5e1; }
+    .section { font-size: 13px; font-weight: 700; fill: #e2e8f0; letter-spacing: 1.4px; }
+    .section-sub { font-size: 12px; font-weight: 500; fill: #94a3b8; }
+    .node-title { font-weight: 700; fill: #f8fafc; }
+    .node-sub { font-weight: 500; fill: #cbd5e1; }
+    .node-type { font-size: 12px; font-weight: 700; fill: #cbd5e1; letter-spacing: 0.08em; }
+    .arrow-label { font-size: 12px; font-weight: 600; fill: #e2e8f0; }
+    .legend { font-size: 12px; font-weight: 500; fill: #cbd5e1; }
+    .footnote { font-size: 12px; font-weight: 500; fill: #94a3b8; }
+    .metric-label { font-size: 8.5px; font-weight: 700; fill: #94a3b8; text-transform: uppercase; }
+    .metric-value { font-size: 9.5px; font-weight: 700; fill: #f8fafc; }
+    </style>
+  <filter id="fx-glow" filterUnits="userSpaceOnUse" x="0" y="0" width="4000" height="4000"><feGaussianBlur stdDeviation="2.4" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter><style>.fx-c-t1{animation:fx-c-t1 5.6s linear infinite}@keyframes fx-c-t1{0%,0.00%{stroke-dashoffset:40;opacity:1}16.07%{stroke-dashoffset:-363;opacity:1}16.25%,100%{stroke-dashoffset:-363;opacity:0}}#t1{animation:fx-e-t1 5.6s linear infinite}@keyframes fx-e-t1{0%,0.00%{opacity:.18}16.07%,91.07%{opacity:1}100%{opacity:.18}}.fx-c-t2{animation:fx-c-t2 5.6s linear infinite}@keyframes fx-c-t2{0%,0.00%{stroke-dashoffset:40;opacity:1}16.07%{stroke-dashoffset:-363;opacity:1}16.25%,100%{stroke-dashoffset:-363;opacity:0}}#t2{animation:fx-e-t2 5.6s linear infinite}@keyframes fx-e-t2{0%,0.00%{opacity:.18}16.07%,91.07%{opacity:1}100%{opacity:.18}}.fx-c-t3{animation:fx-c-t3 5.6s linear infinite}@keyframes fx-c-t3{0%,17.86%{stroke-dashoffset:40;opacity:1}33.93%{stroke-dashoffset:-148;opacity:1}34.11%,100%{stroke-dashoffset:-148;opacity:0}}#t3{animation:fx-e-t3 5.6s linear infinite}@keyframes fx-e-t3{0%,17.86%{opacity:.18}33.93%,91.07%{opacity:1}100%{opacity:.18}}.fx-c-t4{animation:fx-c-t4 5.6s linear infinite}@keyframes fx-c-t4{0%,35.71%{stroke-dashoffset:40;opacity:1}51.79%{stroke-dashoffset:-253;opacity:1}51.96%,100%{stroke-dashoffset:-253;opacity:0}}#t4{animation:fx-e-t4 5.6s linear infinite}@keyframes fx-e-t4{0%,35.71%{opacity:.18}51.79%,91.07%{opacity:1}100%{opacity:.18}}#node-weak{animation:fx-n-weak 5.6s ease-out infinite}@keyframes fx-n-weak{0%,13.39%{opacity:0.3}16.96%,91.07%{opacity:1}100%{opacity:0.3}}#node-none{animation:fx-n-none 5.6s ease-out infinite}@keyframes fx-n-none{0%,0.00%{opacity:1}0.89%,91.07%{opacity:1}100%{opacity:1}}#node-ok{animation:fx-n-ok 5.6s ease-out infinite}@keyframes fx-n-ok{0%,13.39%{opacity:0.3}16.96%,91.07%{opacity:1}100%{opacity:0.3}}@media (prefers-reduced-motion:reduce){*{animation:none!important}.fx-c{display:none}}</style></defs>
+  <rect data-graph-role="background" width="1000.0" height="500.0" fill="#0f172a"/>
+  <text x="500.0" y="56" text-anchor="middle" class="title">掌握情况怎么变</text>
+  <text x="500.0" y="82" text-anchor="middle" class="subtitle">只有三种状态，只跟着作答变</text>
+  <path id="t1" data-graph-role="edge" data-edge-id="t1" data-source="none" data-target="weak" data-edge-kind="flow" data-topic-id="" data-flow="feedback" data-motion-role="" data-motion-stage="" data-motion-order="" data-protocol="" data-via="" data-critical-path-id="" data-critical-hop="" data-critical-hops="" data-critical="false" data-bends="2" data-route-stretch="1.0" data-bridges="" d="M 300,253 L 320.4,253 L 320.4,162 L 560,162" fill="none" stroke="#f59e0b" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#arrowG)"/>
+  <path id="t2" data-graph-role="edge" data-edge-id="t2" data-source="none" data-target="ok" data-edge-kind="flow" data-topic-id="" data-flow="write" data-motion-role="" data-motion-stage="" data-motion-order="" data-protocol="" data-via="" data-critical-path-id="" data-critical-hop="" data-critical-hops="" data-critical="false" data-bends="2" data-route-stretch="1.0" data-bridges="" d="M 300,271 L 320.4,271 L 320.4,362 L 560,362" fill="none" stroke="#34d399" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#arrowB)"/>
+  <path id="t3" data-graph-role="edge" data-edge-id="t3" data-source="weak" data-target="ok" data-edge-kind="flow" data-topic-id="" data-flow="write" data-motion-role="" data-motion-stage="" data-motion-order="" data-protocol="" data-via="" data-critical-path-id="" data-critical-hop="" data-critical-hops="" data-critical="false" data-bends="0" data-route-stretch="1.0" data-bridges="" d="M 680,194 L 680,330" fill="none" stroke="#34d399" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#arrowB)"/>
+  <path id="t4" data-graph-role="edge" data-edge-id="t4" data-source="ok" data-target="weak" data-edge-kind="flow" data-topic-id="" data-flow="feedback" data-motion-role="" data-motion-stage="" data-motion-order="" data-protocol="" data-via="" data-critical-path-id="" data-critical-hop="" data-critical-hops="" data-critical="false" data-bends="2" data-route-stretch="1.204" data-bridges="" d="M 800,362 L 820.4,362 L 820.4,162 L 800,162" fill="none" stroke="#f59e0b" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#arrowG)"/>
+<g class="fx-overlay"><path class="fx-c fx-c-t1" d="M 300,253 L 320.4,253 L 320.4,162 L 560,162" fill="none" stroke="#f59e0b" stroke-width="6" stroke-linecap="round" filter="url(#fx-glow)" stroke-dasharray="40 403" stroke-dashoffset="40"/><path class="fx-c fx-c-t2" d="M 300,271 L 320.4,271 L 320.4,362 L 560,362" fill="none" stroke="#34d399" stroke-width="6" stroke-linecap="round" filter="url(#fx-glow)" stroke-dasharray="40 403" stroke-dashoffset="40"/><path class="fx-c fx-c-t3" d="M 680,194 L 680,330" fill="none" stroke="#34d399" stroke-width="6" stroke-linecap="round" filter="url(#fx-glow)" stroke-dasharray="40 188" stroke-dashoffset="40"/><path class="fx-c fx-c-t4" d="M 800,362 L 820.4,362 L 820.4,162 L 800,162" fill="none" stroke="#f59e0b" stroke-width="6" stroke-linecap="round" filter="url(#fx-glow)" stroke-dasharray="40 293" stroke-dashoffset="40"/></g>
+  <g id="node-none" data-graph-role="node" data-node-id="none" data-semantic-role="rect" data-motion-role="" data-motion-stage="" data-motion-order="" data-parent="" data-deployment-id="" data-topic-id="" data-span-id="" data-station-order="" data-status="" data-start-ms="" data-duration-ms="" data-parent-span="" data-graph-bounds="60,230,300,294">
+  <rect x="60.0" y="230.0" width="240.0" height="64.0" rx="18.0" fill="rgba(255,255,255,0.10)" stroke="#8b949e" stroke-width="1.8" filter="url(#shadowGlass)"/>
+  <text data-text-role="title" data-full-text="没练过" data-text-max-width="216.0" x="180.0" y="262.0" text-anchor="middle" class="node-title" font-size="18">没练过</text>
+  <text data-text-role="subtitle" data-full-text="总览里有、进度里没有" data-text-max-width="216.0" x="180.0" y="284.0" text-anchor="middle" class="node-sub" font-size="12">总览里有、进度里没有</text>
+  </g>
+  <g id="node-weak" data-graph-role="node" data-node-id="weak" data-semantic-role="rect" data-motion-role="" data-motion-stage="" data-motion-order="" data-parent="" data-deployment-id="" data-topic-id="" data-span-id="" data-station-order="" data-status="" data-start-ms="" data-duration-ms="" data-parent-span="" data-graph-bounds="560,130,800,194">
+  <rect x="560.0" y="130.0" width="240.0" height="64.0" rx="18.0" fill="rgba(255,255,255,0.10)" stroke="#f59e0b" stroke-width="1.8" filter="url(#shadowGlass)"/>
+  <text data-text-role="title" data-full-text="要重温" data-text-max-width="216.0" x="680.0" y="162.0" text-anchor="middle" class="node-title" font-size="18">要重温</text>
+  <text data-text-role="subtitle" data-full-text="复测又错：3 天后再测" data-text-max-width="216.0" x="680.0" y="184.0" text-anchor="middle" class="node-sub" font-size="12">复测又错：3 天后再测</text>
+  </g>
+  <g id="node-ok" data-graph-role="node" data-node-id="ok" data-semantic-role="rect" data-motion-role="" data-motion-stage="" data-motion-order="" data-parent="" data-deployment-id="" data-topic-id="" data-span-id="" data-station-order="" data-status="" data-start-ms="" data-duration-ms="" data-parent-span="" data-graph-bounds="560,330,800,394">
+  <rect x="560.0" y="330.0" width="240.0" height="64.0" rx="18.0" fill="rgba(255,255,255,0.10)" stroke="#3fb950" stroke-width="1.8" filter="url(#shadowGlass)"/>
+  <text data-text-role="title" data-full-text="会了" data-text-max-width="216.0" x="680.0" y="362.0" text-anchor="middle" class="node-title" font-size="18">会了</text>
+  <text data-text-role="subtitle" data-full-text="不再排复测" data-text-max-width="216.0" x="680.0" y="384.0" text-anchor="middle" class="node-sub" font-size="12">不再排复测</text>
+  </g>
+  <g id="t1-label" data-graph-role="label" data-owner="t1" data-graph-bounds="373.2,131,507.2,151">
+  <rect x="373.2" y="131.0" width="134.0" height="20" rx="6" fill="rgba(15,23,42,0.7)" opacity="1"/>
+  <text x="440.2" y="145.0" text-anchor="middle" class="arrow-label">没做对，或提示后才对</text>
+  </g>
+  <g id="t2-label" data-graph-role="label" data-owner="t2" data-graph-bounds="385.2,331,495.2,351">
+  <rect x="385.2" y="331.0" width="110.0" height="20" rx="6" fill="rgba(15,23,42,0.7)" opacity="1"/>
+  <text x="440.2" y="345.0" text-anchor="middle" class="arrow-label">第一次就独立做对</text>
+  </g>
+  <g id="t3-label" data-graph-role="label" data-owner="t3" data-graph-bounds="579,248,677,268">
+  <rect x="579.0" y="248.0" width="98.0" height="20" rx="6" fill="rgba(15,23,42,0.7)" opacity="1"/>
+  <text x="628.0" y="262.0" text-anchor="middle" class="arrow-label">名下错题都过关</text>
+  </g>
+  <g id="t4-label" data-graph-role="label" data-owner="t4" data-graph-bounds="755.4,248,817.4,268">
+  <rect x="755.4" y="248.0" width="62.0" height="20" rx="6" fill="rgba(15,23,42,0.7)" opacity="1"/>
+  <text x="786.4" y="262.0" text-anchor="middle" class="arrow-label">之后做错</text>
+  </g>
+  <g id="legend" data-graph-role="legend">
+    <rect id="legend-zone" data-graph-role="reserved" data-reserved-kind="legend" x="38" y="406" width="234" height="46" rx="10" fill="none" stroke="none"/>
+    <line data-graph-role="decoration" x1="48.0" y1="420.0" x2="78.0" y2="420.0" stroke="#34d399" stroke-width="2.2" marker-end="url(#arrowB)"/>
+    <text data-graph-role="decoration" x="88.0" y="424.0" class="legend">做对</text>
+    <line data-graph-role="decoration" x1="140.0" y1="420.0" x2="170.0" y2="420.0" stroke="#f59e0b" stroke-width="2.2" marker-end="url(#arrowG)"/>
+    <text data-graph-role="decoration" x="180.0" y="424.0" class="legend">做错或靠提示</text>
+  </g>
+  <g id="footer" data-graph-role="reserved" data-graph-bounds="48,458,307,474">
+  <text x="48.0" y="470.0" class="footnote">过关 = 隔 3 天、7 天各独立做对一次；间隔写在 库规则.md，可以改</text>
+  </g>
+</svg>
