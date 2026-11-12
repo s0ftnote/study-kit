@@ -2,11 +2,18 @@
 import re, sys, math, pathlib
 
 STAGES = {
+  "overview": {"a1":0,"a3":0,"a2":1,"a4":2,"a5":2,"a6":3,"a7":4,"a8":4,"a9":5,"a10":6},
   "bili": {"e1":0,"e2":0,"e3":1,"e4":1,"e5":2,"e6":3,"e7":4,"e9":5,"e10":6},
   "wiki": {"e1":0,"e2":0,"e3":1,"e4":1,"e5":2,"e6":3,"e7":3,"e8":4,"e9":4,"e10":5},
   "practice": {"e1":0,"e2":1,"e3":2,"e4":2,"e5":3,"e6":3,"e7":4,"e8":5,"e9":6},
   "states": {"t1":0,"t2":0,"t3":1,"t4":2},
 }
+# 渲染器的路由改不动的地方，在这里改：边的路径、容器标题的位置
+PATH_FIX = {
+  "overview": {"a2": "M 123,372 L 123,522", "a3": "M 262,216 L 262,522"},
+}
+HEADER_AT = {"overview": {"vault": 439}}   # 容器标题挪到两条竖线之间，居中
+
 STEP, TRAVEL, HOLD, COMET = 1.0, 0.9, 2.6, 40
 
 def plen(d):
@@ -17,6 +24,11 @@ def pct(t, T): return f"{100*t/T:.2f}%"
 
 def main(src, dst, name):
     svg = pathlib.Path(src).read_text()
+    for eid, d in PATH_FIX.get(name, {}).items():
+        svg = re.sub(rf'(<path id="{eid}" [^>]*? d=")[^"]+"', rf'\g<1>{d}"', svg)
+    for cid, hx in HEADER_AT.get(name, {}).items():
+        svg = re.sub(rf'(<g id="{cid}" [\s\S]*?<text x=")[\d.]+(" y="[\d.]+" class="section")', rf'\g<1>{hx}" text-anchor="middle\g<2>', svg, count=1)
+        svg = re.sub(rf'<rect id="{cid}-header"[^>]*/>', "", svg)
     stages = STAGES[name]
     nstage = max(stages.values()) + 1
     T = nstage * STEP + HOLD

@@ -45,6 +45,10 @@ npx skills add s0ftnote/study-kit --skill '*' -g -a claude-code
 
 ## 学习库
 
+![学习库在 Obsidian 里的样子：左边文件树分资料、知识、练习三个区，中间是一页知识点，右边是关系图谱](docs/images/vault.svg)
+
+每页是带属性和固定小节的 Markdown，页和页之间用 `[[双链]]` 连起来，Obsidian 的关系图谱里就能看到整张知识网。格式全写在 `库规则.md`。
+
 ```text
 学习库/
 ├── 库规则.md       # 目录、命名、每种笔记的模板；想改格式就改这一份

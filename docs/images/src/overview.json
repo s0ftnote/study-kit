@@ -1,0 +1,301 @@
+{
+ "schema_version": 1,
+ "mode": "agent",
+ "template_type": "agent",
+ "style": 5,
+ "quality_profile": "standard",
+ "text_policy": "strict",
+ "width": 1100,
+ "height": 740,
+ "title": "study-kit 全景",
+ "subtitle": "资料 → 知识库 → 知识输出；三个文件夹都在同一个 Obsidian 学习库里",
+ "containers": [
+  {
+   "id": "z1",
+   "x": 40,
+   "y": 110,
+   "width": 300,
+   "height": 320,
+   "label": "① 资料",
+   "stroke": "rgba(88,166,255,0.45)",
+   "fill": "rgba(255,255,255,0.05)"
+  },
+  {
+   "id": "z2",
+   "x": 380,
+   "y": 110,
+   "width": 300,
+   "height": 320,
+   "label": "② 知识库",
+   "stroke": "rgba(188,140,255,0.45)",
+   "fill": "rgba(255,255,255,0.05)"
+  },
+  {
+   "id": "z3",
+   "x": 720,
+   "y": 110,
+   "width": 300,
+   "height": 320,
+   "label": "③ 知识输出",
+   "stroke": "rgba(245,158,11,0.45)",
+   "fill": "rgba(255,255,255,0.05)"
+  },
+  {
+   "id": "vault",
+   "x": 40,
+   "y": 470,
+   "width": 980,
+   "height": 150,
+   "label": "学习库 · Obsidian",
+   "stroke": "rgba(196,181,253,0.55)",
+   "fill": "rgba(255,255,255,0.06)"
+  }
+ ],
+ "nodes": [
+  {
+   "id": "video",
+   "kind": "speech",
+   "x": 58,
+   "y": 160,
+   "width": 130,
+   "height": 56,
+   "label": "B 站网课",
+   "fill": "rgba(255,255,255,0.10)",
+   "stroke": "#58a6ff",
+   "sublabel": "视频链接",
+   "flat": true
+  },
+  {
+   "id": "paper",
+   "kind": "rect",
+   "x": 200,
+   "y": 160,
+   "width": 124,
+   "height": 56,
+   "label": "卷子 · 书",
+   "fill": "rgba(255,255,255,0.10)",
+   "stroke": "#58a6ff",
+   "sublabel": "讲义 · 照片"
+  },
+  {
+   "id": "bili",
+   "kind": "double_rect",
+   "x": 58,
+   "y": 310,
+   "width": 130,
+   "height": 62,
+   "label": "bili-reach",
+   "fill": "rgba(255,255,255,0.12)",
+   "stroke": "#58a6ff",
+   "type_label": "取稿 · 看图"
+  },
+  {
+   "id": "say1",
+   "kind": "speech",
+   "x": 420,
+   "y": 160,
+   "width": 220,
+   "height": 56,
+   "label": "“把这个加进去”",
+   "fill": "rgba(255,255,255,0.10)",
+   "stroke": "#bc8cff",
+   "sublabel": "附链接、文件或照片",
+   "flat": true
+  },
+  {
+   "id": "wiki",
+   "kind": "double_rect",
+   "x": 420,
+   "y": 310,
+   "width": 220,
+   "height": 62,
+   "label": "study-wiki",
+   "fill": "rgba(255,255,255,0.12)",
+   "stroke": "#bc8cff",
+   "type_label": "拆解 · 入库"
+  },
+  {
+   "id": "say2",
+   "kind": "speech",
+   "x": 760,
+   "y": 160,
+   "width": 220,
+   "height": 56,
+   "label": "“这是我做的”",
+   "fill": "rgba(255,255,255,0.10)",
+   "stroke": "#f59e0b",
+   "sublabel": "帮我看看 · 今天练什么",
+   "flat": true
+  },
+  {
+   "id": "practice",
+   "kind": "double_rect",
+   "x": 760,
+   "y": 310,
+   "width": 220,
+   "height": 62,
+   "label": "study-practice",
+   "fill": "rgba(255,255,255,0.12)",
+   "stroke": "#f59e0b",
+   "type_label": "陪练 · 记录"
+  },
+  {
+   "id": "raw",
+   "kind": "rect",
+   "x": 58,
+   "y": 522,
+   "width": 272,
+   "height": 70,
+   "label": "资料/",
+   "fill": "rgba(255,255,255,0.08)",
+   "stroke": "#58a6ff",
+   "sublabel": "视频稿 · 截图 · 卷子原件"
+  },
+  {
+   "id": "know",
+   "kind": "rect",
+   "x": 420,
+   "y": 522,
+   "width": 220,
+   "height": 70,
+   "label": "知识/",
+   "fill": "rgba(255,255,255,0.08)",
+   "stroke": "#bc8cff",
+   "sublabel": "知识点 · 题目 · 总览 · 导图"
+  },
+  {
+   "id": "log",
+   "kind": "rect",
+   "x": 760,
+   "y": 522,
+   "width": 220,
+   "height": 70,
+   "label": "练习/",
+   "fill": "rgba(255,255,255,0.08)",
+   "stroke": "#f59e0b",
+   "sublabel": "记录 · 错题本 · 进度"
+  }
+ ],
+ "arrows": [
+  {
+   "id": "a1",
+   "source": "video",
+   "target": "bili",
+   "source_port": "bottom",
+   "target_port": "top",
+   "flow": "read"
+  },
+  {
+   "id": "a2",
+   "source": "bili",
+   "target": "raw",
+   "source_port": "bottom",
+   "target_port": "top",
+   "flow": "write",
+   "label": "资料包",
+   "route_points": [
+    [
+     123,
+     450
+    ]
+   ]
+  },
+  {
+   "id": "a3",
+   "source": "paper",
+   "target": "raw",
+   "source_port": "bottom",
+   "target_port": "top",
+   "flow": "write",
+   "label": "原件",
+   "route_points": [
+    [
+     262,
+     450
+    ]
+   ]
+  },
+  {
+   "id": "a4",
+   "source": "raw",
+   "target": "wiki",
+   "source_port": "right",
+   "target_port": "left",
+   "flow": "read",
+   "label": "读原件"
+  },
+  {
+   "id": "a5",
+   "source": "say1",
+   "target": "wiki",
+   "source_port": "bottom",
+   "target_port": "top",
+   "flow": "read"
+  },
+  {
+   "id": "a6",
+   "source": "wiki",
+   "target": "know",
+   "source_port": "bottom",
+   "target_port": "top",
+   "flow": "write",
+   "label": "连成网"
+  },
+  {
+   "id": "a7",
+   "source": "know",
+   "target": "practice",
+   "source_port": "right",
+   "target_port": "left",
+   "flow": "read",
+   "label": "讲解 · 出处 · 同类题"
+  },
+  {
+   "id": "a8",
+   "source": "say2",
+   "target": "practice",
+   "source_port": "bottom",
+   "target_port": "top",
+   "flow": "read"
+  },
+  {
+   "id": "a9",
+   "source": "practice",
+   "target": "log",
+   "source_port": "bottom",
+   "target_port": "top",
+   "flow": "write",
+   "label": "记录"
+  },
+  {
+   "id": "a10",
+   "source": "log",
+   "target": "say2",
+   "source_port": "right",
+   "target_port": "right",
+   "flow": "feedback",
+   "label": "今天练什么"
+  }
+ ],
+ "legend_orientation": "horizontal",
+ "legend_x": 48,
+ "legend_y": 660,
+ "legend_locked": false,
+ "legend": [
+  {
+   "flow": "read",
+   "label": "读取"
+  },
+  {
+   "flow": "write",
+   "label": "写进学习库"
+  },
+  {
+   "flow": "feedback",
+   "label": "复测循环"
+  }
+ ],
+ "footer": "资料进来，知识连起来，练习跟上去",
+ "footer_x": 48,
+ "footer_y": 710
+}
