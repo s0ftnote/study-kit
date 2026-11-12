@@ -62,6 +62,11 @@ def text(x, y, s, size, color, weight=600, anchor="middle", font=CJK, extra=""):
     return (f'<text x="{x:.0f}" y="{y:.0f}" font-family="{font}" font-size="{size}" font-weight="{weight}" '
             f'fill="{color}" text-anchor="{anchor}" dominant-baseline="central"{extra}>{s}</text>')
 
+VAULT = "#C4B5FD"               # 学习库（Obsidian）标记色
+def vault_mark(x, y, r=12):
+    return (f'<path d="M {x},{y-r} L {x+r*0.8},{y} L {x},{y+r} L {x-r*0.8},{y} Z" fill="{VAULT}" '
+            f'stroke="{BG}" stroke-width="1.5"/>')
+
 def box(key, label, col, corner=False, words=(), lit=0.0):
     x, y, w, h = B[key]
     g = [f'<g class="bx-{key}">',
@@ -69,6 +74,7 @@ def box(key, label, col, corner=False, words=(), lit=0.0):
          f'stroke="{col}" stroke-width="2.5" filter="url(#glow)"/>']
     if corner:
         g.append(text(x - w / 2 + 22, y - h / 2 + 34, label, 38, col, 700, "start"))
+        g.append(vault_mark(x + w / 2 - 26, y - h / 2 + 28))
     else:
         g.append(text(x, y + 1, label, 26, col, 600))
     g.append("</g>")
@@ -154,6 +160,27 @@ capsule("reach", 0.7); capsule("wiki", LIT["wiki"]); capsule("practice", LIT["pr
 bubble(490, 158, "把这个加进去", SRC, "down", LIT["src"], "bb-0")
 bubble(600, 690, "这是我做的，帮我看看", PRAC, "right", LIT["answer"], "bb-1")
 bubble(1315, LOOP_Y, "今天练什么？", PRAC, "none", LIT["loop"], "bb-2")
+
+# 学习库卡片：资料/ 知识/ 练习/ 是同一个文件夹，用 Obsidian 打开
+VX, VY, VW, VH = 100, 770, 640, 150
+GRAPH = [(60, 40), (110, 22), (150, 58), (95, 80), (40, 98), (135, 112), (182, 30), (190, 92)]
+GEDGE = [(0, 1), (1, 2), (0, 3), (3, 2), (3, 4), (3, 5), (2, 6), (2, 7), (5, 7), (1, 6)]
+out.append(f'<g class="vault"><rect x="{VX}" y="{VY}" width="{VW}" height="{VH}" rx="20" fill="{VAULT}" fill-opacity="0.06" '
+           f'stroke="{VAULT}" stroke-opacity="0.35" stroke-width="1.5" stroke-dasharray="6 6"/>')
+gx, gy = VX + 18, VY + 6
+for a, b in GEDGE:
+    (x1, y1), (x2, y2) = GRAPH[a], GRAPH[b]
+    out.append(f'<line x1="{gx+x1}" y1="{gy+y1}" x2="{gx+x2}" y2="{gy+y2}" stroke="{VAULT}" stroke-opacity="0.45" stroke-width="1.5"/>')
+for i, (x, y) in enumerate(GRAPH):
+    col = (SRC, KNOW, PRAC)[i % 3]
+    out.append(f'<circle class="vn-{i}" cx="{gx+x}" cy="{gy+y}" r="{7 if i == 3 else 5}" fill="{col}" filter="url(#glow)"/>')
+    anim(f".vn-{i}", LIT["loop"] + 0.3 + 0.08 * i, lo=0.3)
+tx = VX + 240
+out.append(vault_mark(tx + 9, VY + 40) + text(tx + 28, VY + 40, "学习库 · 用 Obsidian 打开", 28, INK, 700, "start"))
+out.append(text(tx, VY + 84, "资料/ 知识/ 练习/ 是同一个文件夹", 22, "#B7BCCD", 500, "start"))
+out.append(text(tx, VY + 116, "点链接跳到原片时间，看关系图谱和导图", 22, "#B7BCCD", 500, "start"))
+out.append("</g>")
+anim(".vault", LIT["loop"] + 0.2, lo=0.35)
 
 css.append("@media (prefers-reduced-motion:reduce){*{animation:none!important}[class^=mv-]{display:none}}")
 

@@ -31,7 +31,7 @@ npx skills add s0ftnote/study-kit --skill '*' -g -a claude-code
 
 ![study-kit 全景：资料、知识库、知识输出三个区，资料经 study-wiki 连成知识，做题时由 study-practice 取出来用](docs/images/overview.svg)
 
-三个区：**资料**（网课、卷子、书放进 `资料/`，保持原样）→ **知识库**（`study-wiki` 拆成知识点和题目，连成网）→ **知识输出**（做题时 `study-practice` 把讲解、出处、同类题取出来用，错了记进 `练习/`，再排进“今天练什么”）。
+三个区：**资料**（网课、卷子、书放进 `资料/`，保持原样）→ **知识库**（`study-wiki` 拆成知识点和题目，连成网）→ **知识输出**（做题时 `study-practice` 把讲解、出处、同类题取出来用，错了记进 `练习/`，再排进“今天练什么”）。三个文件夹在同一个学习库里，用 Obsidian 打开。
 
 ## 平时只说三句话
 
