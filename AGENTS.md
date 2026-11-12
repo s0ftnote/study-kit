@@ -7,6 +7,7 @@
 - 分工按学习库的区来：`study-wiki` 写 `资料/`、`知识/` 和 `日志.md`，`study-practice` 只写 `练习/`，`bili-reach` 只产出资料包和讲解，不写 `知识/` 和 `练习/`。三者只通过学习库里的文件打交道。
 - 笔记格式只写在 `skills/study-wiki/assets/学习库模板/库规则.md` 一处；`SKILL.md` 只写流程。状态词（`要重温`、`会了`）和总览的“来源”小节名，`study-practice` 和 `scripts/mindmap.mjs` 也在用，改要一起改。
 - 流程是默认走法，不是关卡。改了流程或结构，同步根 `README.md` 和该 skill `README.md` 里的图和表。
+- README 里的图是 [fireworks-tech-graph](https://github.com/yizhiyanhua-ai/fireworks-tech-graph) 的 Style 5 生成的 PNG，源 JSON 和 SVG 在 `docs/images/src/`。改图就改 JSON，用它的 `fireworks.py render agent` 和 `export-png --width 1920` 重出，别手改 PNG。skill 目录里的 README 用 `raw.githubusercontent.com` 的完整链接引用这些图。
 - 每个 skill 目录要能单独安装：目录内的链接只指向本目录里的文件，指向仓库其他位置用 GitHub 完整链接（`test/skill.test.mjs` 会检查）。
 - 测试、示例和提交中不含 cookie、私有配置、课堂材料或学生作答。
 

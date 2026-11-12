@@ -1,0 +1,258 @@
+{
+ "schema_version": 1,
+ "mode": "agent",
+ "template_type": "agent",
+ "style": 5,
+ "quality_profile": "standard",
+ "text_policy": "strict",
+ "width": 1380,
+ "height": 520,
+ "title": "study-practice 看作答",
+ "subtitle": "做题卡住时，带你回到自己资料里的讲解，再试一次",
+ "containers": [
+  {
+   "id": "c1",
+   "x": 270,
+   "y": 110,
+   "width": 250,
+   "height": 290,
+   "label": "① 看作答",
+   "stroke": "rgba(255,255,255,0.20)",
+   "fill": "rgba(255,255,255,0.04)"
+  },
+  {
+   "id": "c2",
+   "x": 560,
+   "y": 110,
+   "width": 250,
+   "height": 290,
+   "label": "② 回到资料",
+   "stroke": "rgba(255,255,255,0.20)",
+   "fill": "rgba(255,255,255,0.04)"
+  },
+  {
+   "id": "c3",
+   "x": 850,
+   "y": 110,
+   "width": 250,
+   "height": 290,
+   "label": "③ 再练一次",
+   "stroke": "rgba(255,255,255,0.20)",
+   "fill": "rgba(255,255,255,0.04)"
+  }
+ ],
+ "nodes": [
+  {
+   "id": "start",
+   "kind": "speech",
+   "x": 40,
+   "y": 215,
+   "width": 190,
+   "height": 60,
+   "label": "这是我做的",
+   "fill": "rgba(255,255,255,0.10)",
+   "stroke": "#f59e0b",
+   "sublabel": "或：这题我不会",
+   "flat": true
+  },
+  {
+   "id": "q",
+   "kind": "rect",
+   "x": 295,
+   "y": 160,
+   "width": 200,
+   "height": 60,
+   "label": "认题，留下原始作答",
+   "fill": "rgba(255,255,255,0.10)",
+   "stroke": "#f59e0b",
+   "sublabel": "题不在库里也先帮你"
+  },
+  {
+   "id": "hear",
+   "kind": "rect",
+   "x": 295,
+   "y": 300,
+   "width": 200,
+   "height": 60,
+   "label": "先听你说卡在哪",
+   "fill": "rgba(255,255,255,0.10)",
+   "stroke": "#f59e0b",
+   "sublabel": "再对答案"
+  },
+  {
+   "id": "lib",
+   "kind": "rect",
+   "x": 585,
+   "y": 160,
+   "width": 200,
+   "height": 60,
+   "label": "库里的讲解",
+   "fill": "rgba(255,255,255,0.10)",
+   "stroke": "#bc8cff",
+   "sublabel": "带视频时间或页码"
+  },
+  {
+   "id": "ai",
+   "kind": "rect",
+   "x": 585,
+   "y": 300,
+   "width": 200,
+   "height": 60,
+   "label": "AI 讲",
+   "fill": "rgba(255,255,255,0.10)",
+   "stroke": "#bc8cff",
+   "sublabel": "说明不是出自资料"
+  },
+  {
+   "id": "hint",
+   "kind": "rect",
+   "x": 875,
+   "y": 160,
+   "width": 200,
+   "height": 60,
+   "label": "小提示，你再试",
+   "fill": "rgba(255,255,255,0.10)",
+   "stroke": "#3fb950",
+   "sublabel": "从小的提示给起"
+  },
+  {
+   "id": "same",
+   "kind": "rect",
+   "x": 875,
+   "y": 300,
+   "width": 200,
+   "height": 60,
+   "label": "同类题",
+   "fill": "rgba(255,255,255,0.10)",
+   "stroke": "#3fb950",
+   "sublabel": "先找库里的"
+  },
+  {
+   "id": "rec",
+   "kind": "double_rect",
+   "x": 1140,
+   "y": 300,
+   "width": 200,
+   "height": 60,
+   "label": "记下来",
+   "fill": "rgba(255,255,255,0.10)",
+   "stroke": "#f59e0b",
+   "sublabel": "记录 · 错题本 · 进度"
+  },
+  {
+   "id": "next",
+   "kind": "speech",
+   "x": 1140,
+   "y": 160,
+   "width": 200,
+   "height": 60,
+   "label": "3 天后复测",
+   "fill": "rgba(255,255,255,0.10)",
+   "stroke": "#f59e0b",
+   "sublabel": "今天练什么会排进去",
+   "flat": true
+  }
+ ],
+ "arrows": [
+  {
+   "id": "e1",
+   "source": "start",
+   "target": "q",
+   "source_port": "right",
+   "target_port": "left",
+   "flow": "read"
+  },
+  {
+   "id": "e2",
+   "source": "q",
+   "target": "hear",
+   "source_port": "bottom",
+   "target_port": "top",
+   "flow": "control"
+  },
+  {
+   "id": "e3",
+   "source": "hear",
+   "target": "lib",
+   "source_port": "right",
+   "target_port": "left",
+   "flow": "read",
+   "label": "库里有"
+  },
+  {
+   "id": "e4",
+   "source": "hear",
+   "target": "ai",
+   "source_port": "right",
+   "target_port": "left",
+   "flow": "read",
+   "label": "库里没有",
+   "label_dx": 26
+  },
+  {
+   "id": "e5",
+   "source": "lib",
+   "target": "hint",
+   "source_port": "right",
+   "target_port": "left",
+   "flow": "control"
+  },
+  {
+   "id": "e6",
+   "source": "ai",
+   "target": "hint",
+   "source_port": "right",
+   "target_port": "left",
+   "flow": "control"
+  },
+  {
+   "id": "e7",
+   "source": "hint",
+   "target": "same",
+   "source_port": "bottom",
+   "target_port": "top",
+   "flow": "control"
+  },
+  {
+   "id": "e8",
+   "source": "same",
+   "target": "rec",
+   "source_port": "right",
+   "target_port": "left",
+   "flow": "write"
+  },
+  {
+   "id": "e9",
+   "source": "rec",
+   "target": "next",
+   "source_port": "top",
+   "target_port": "bottom",
+   "flow": "feedback"
+  }
+ ],
+ "legend_orientation": "horizontal",
+ "legend_x": 48,
+ "legend_y": 440,
+ "legend_locked": false,
+ "legend": [
+  {
+   "flow": "read",
+   "label": "取讲解"
+  },
+  {
+   "flow": "control",
+   "label": "陪练"
+  },
+  {
+   "flow": "write",
+   "label": "写进 练习/"
+  },
+  {
+   "flow": "feedback",
+   "label": "复测"
+  }
+ ],
+ "footer": "状态只跟着作答变：看过讲解、说“我懂了”都不改进度",
+ "footer_x": 48,
+ "footer_y": 490
+}

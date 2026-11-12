@@ -1,0 +1,246 @@
+{
+ "schema_version": 1,
+ "mode": "agent",
+ "template_type": "agent",
+ "style": 5,
+ "quality_profile": "standard",
+ "text_policy": "strict",
+ "width": 1380,
+ "height": 520,
+ "title": "bili-reach 处理流程",
+ "subtitle": "先读完整讲稿，遇到板书和图形再看画面",
+ "containers": [
+  {
+   "id": "c1",
+   "x": 270,
+   "y": 110,
+   "width": 250,
+   "height": 290,
+   "label": "① 取稿",
+   "stroke": "rgba(255,255,255,0.20)",
+   "fill": "rgba(255,255,255,0.04)"
+  },
+  {
+   "id": "c2",
+   "x": 560,
+   "y": 110,
+   "width": 250,
+   "height": 290,
+   "label": "② 读稿",
+   "stroke": "rgba(255,255,255,0.20)",
+   "fill": "rgba(255,255,255,0.04)"
+  },
+  {
+   "id": "c3",
+   "x": 850,
+   "y": 110,
+   "width": 250,
+   "height": 290,
+   "label": "③ 看图（需要时）",
+   "stroke": "rgba(255,255,255,0.20)",
+   "fill": "rgba(255,255,255,0.04)"
+  }
+ ],
+ "nodes": [
+  {
+   "id": "start",
+   "kind": "speech",
+   "x": 40,
+   "y": 215,
+   "width": 190,
+   "height": 60,
+   "label": "视频链接",
+   "fill": "rgba(255,255,255,0.10)",
+   "stroke": "#58a6ff",
+   "sublabel": "+ 你的问题",
+   "flat": true
+  },
+  {
+   "id": "sub",
+   "kind": "rect",
+   "x": 295,
+   "y": 160,
+   "width": 200,
+   "height": 60,
+   "label": "平台字幕",
+   "fill": "rgba(255,255,255,0.10)",
+   "stroke": "#58a6ff",
+   "sublabel": "优先用"
+  },
+  {
+   "id": "asr",
+   "kind": "rect",
+   "x": 295,
+   "y": 300,
+   "width": 200,
+   "height": 60,
+   "label": "本地 Whisper 转写",
+   "fill": "rgba(255,255,255,0.10)",
+   "stroke": "#58a6ff",
+   "sublabel": "明确无字幕才用"
+  },
+  {
+   "id": "read",
+   "kind": "rect",
+   "x": 585,
+   "y": 215,
+   "width": 200,
+   "height": 60,
+   "label": "读讲稿",
+   "fill": "rgba(255,255,255,0.10)",
+   "stroke": "#bc8cff",
+   "sublabel": "整课读完 · 局部读片段"
+  },
+  {
+   "id": "shot",
+   "kind": "rect",
+   "x": 875,
+   "y": 160,
+   "width": 200,
+   "height": 60,
+   "label": "截图",
+   "fill": "rgba(255,255,255,0.10)",
+   "stroke": "#f59e0b",
+   "sublabel": "攒好时间点一次取"
+  },
+  {
+   "id": "look",
+   "kind": "rect",
+   "x": 875,
+   "y": 300,
+   "width": 200,
+   "height": 60,
+   "label": "看图核对",
+   "fill": "rgba(255,255,255,0.10)",
+   "stroke": "#f59e0b",
+   "sublabel": "看不清就补一轮"
+  },
+  {
+   "id": "ans",
+   "kind": "speech",
+   "x": 1140,
+   "y": 300,
+   "width": 200,
+   "height": 60,
+   "label": "回答",
+   "fill": "rgba(255,255,255,0.10)",
+   "stroke": "#3fb950",
+   "sublabel": "讲解 · 例题 · 原片时间",
+   "flat": true
+  },
+  {
+   "id": "wiki",
+   "kind": "double_rect",
+   "x": 1140,
+   "y": 160,
+   "width": 200,
+   "height": 60,
+   "label": "交给 study-wiki",
+   "fill": "rgba(255,255,255,0.10)",
+   "stroke": "#bc8cff",
+   "sublabel": "整理进学习库"
+  }
+ ],
+ "arrows": [
+  {
+   "id": "e1",
+   "source": "start",
+   "target": "sub",
+   "source_port": "right",
+   "target_port": "left",
+   "flow": "read"
+  },
+  {
+   "id": "e2",
+   "source": "start",
+   "target": "asr",
+   "source_port": "right",
+   "target_port": "left",
+   "flow": "read"
+  },
+  {
+   "id": "e3",
+   "source": "sub",
+   "target": "read",
+   "source_port": "right",
+   "target_port": "left",
+   "flow": "write"
+  },
+  {
+   "id": "e4",
+   "source": "asr",
+   "target": "read",
+   "source_port": "right",
+   "target_port": "left",
+   "flow": "write"
+  },
+  {
+   "id": "e5",
+   "source": "read",
+   "target": "shot",
+   "source_port": "right",
+   "target_port": "left",
+   "flow": "control",
+   "label": "要看画面"
+  },
+  {
+   "id": "e6",
+   "source": "shot",
+   "target": "look",
+   "source_port": "bottom",
+   "target_port": "top",
+   "flow": "control"
+  },
+  {
+   "id": "e7",
+   "source": "look",
+   "target": "shot",
+   "source_port": "right",
+   "target_port": "right",
+   "flow": "feedback",
+   "label": "补一轮"
+  },
+  {
+   "id": "e9",
+   "source": "look",
+   "target": "ans",
+   "source_port": "right",
+   "target_port": "left",
+   "flow": "write"
+  },
+  {
+   "id": "e10",
+   "source": "ans",
+   "target": "wiki",
+   "source_port": "top",
+   "target_port": "bottom",
+   "flow": "read",
+   "label": "要入库时"
+  }
+ ],
+ "legend_orientation": "horizontal",
+ "legend_x": 48,
+ "legend_y": 440,
+ "legend_locked": false,
+ "legend": [
+  {
+   "flow": "read",
+   "label": "输入"
+  },
+  {
+   "flow": "write",
+   "label": "产出"
+  },
+  {
+   "flow": "control",
+   "label": "看图核对"
+  },
+  {
+   "flow": "feedback",
+   "label": "补图"
+  }
+ ],
+ "footer": "一次处理一个分 P · 截图会重新下载视频，所以时间点攒在一起取",
+ "footer_x": 48,
+ "footer_y": 490
+}

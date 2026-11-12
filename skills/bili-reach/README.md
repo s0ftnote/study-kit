@@ -25,24 +25,7 @@ npx skills add s0ftnote/study-kit --skill bili-reach
 
 ## 处理流程
 
-```mermaid
-flowchart TD
-    A[视频链接与问题] --> B[确认任务和分 P]
-    B --> C{有可用字幕吗}
-    C -->|有| D[取得字幕全文和时间轴]
-    C -->|明确无字幕| E[本地 Whisper 转写]
-    B -->|已有讲稿，直接复用| F
-    D --> F[读稿：整课读完，局部读相关片段]
-    E --> F
-    F --> G{需要核对板书或图形吗}
-    G -->|需要| H[攒好时间点，一次截图]
-    H --> I[看图并结合讲稿核对]
-    I --> K{画面条件是否清楚}
-    K -->|看不清，补一轮| H
-    K -->|已核对或缺口已说明| J
-    G -->|不需要| J[回答：讲解、例题、原片时间]
-    J -.要入库.-> W[交给 study-wiki]
-```
+![bili-reach 处理流程：取稿、读稿、按需看图，再回答或交给 study-wiki](https://raw.githubusercontent.com/s0ftnote/study-kit/main/docs/images/bili.png)
 
 skill 串起流程，随附脚本负责取稿和截图，agent 负责读稿、看图和讲解。只取稿或只截图时到对应步骤结束。
 

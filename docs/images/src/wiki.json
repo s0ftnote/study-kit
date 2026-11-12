@@ -1,0 +1,261 @@
+{
+ "schema_version": 1,
+ "mode": "agent",
+ "template_type": "agent",
+ "style": 5,
+ "quality_profile": "standard",
+ "text_policy": "strict",
+ "width": 1380,
+ "height": 520,
+ "title": "study-wiki 入库流程",
+ "subtitle": "一次一份资料；同一个东西全库只有一页，每条讲解带出处",
+ "containers": [
+  {
+   "id": "c1",
+   "x": 270,
+   "y": 110,
+   "width": 250,
+   "height": 290,
+   "label": "① 放原件",
+   "stroke": "rgba(255,255,255,0.20)",
+   "fill": "rgba(255,255,255,0.04)"
+  },
+  {
+   "id": "c2",
+   "x": 560,
+   "y": 110,
+   "width": 250,
+   "height": 290,
+   "label": "② 读与查",
+   "stroke": "rgba(255,255,255,0.20)",
+   "fill": "rgba(255,255,255,0.04)"
+  },
+  {
+   "id": "c3",
+   "x": 850,
+   "y": 110,
+   "width": 250,
+   "height": 290,
+   "label": "③ 写页面",
+   "stroke": "rgba(255,255,255,0.20)",
+   "fill": "rgba(255,255,255,0.04)"
+  }
+ ],
+ "nodes": [
+  {
+   "id": "start",
+   "kind": "speech",
+   "x": 40,
+   "y": 215,
+   "width": 190,
+   "height": 60,
+   "label": "链接、文件或照片",
+   "fill": "rgba(255,255,255,0.10)",
+   "stroke": "#bc8cff",
+   "sublabel": "把这个加进去",
+   "flat": true
+  },
+  {
+   "id": "bili",
+   "kind": "rect",
+   "x": 295,
+   "y": 160,
+   "width": 200,
+   "height": 60,
+   "label": "bili-reach 取稿",
+   "fill": "rgba(255,255,255,0.10)",
+   "stroke": "#58a6ff",
+   "sublabel": "B 站视频"
+  },
+  {
+   "id": "file",
+   "kind": "rect",
+   "x": 295,
+   "y": 300,
+   "width": 200,
+   "height": 60,
+   "label": "原件放进 资料/",
+   "fill": "rgba(255,255,255,0.10)",
+   "stroke": "#58a6ff",
+   "sublabel": "卷子 · 书 · 讲义"
+  },
+  {
+   "id": "read",
+   "kind": "rect",
+   "x": 585,
+   "y": 160,
+   "width": 200,
+   "height": 60,
+   "label": "读这次的范围",
+   "fill": "rgba(255,255,255,0.10)",
+   "stroke": "#bc8cff",
+   "sublabel": "公式和图以原件为准"
+  },
+  {
+   "id": "check",
+   "kind": "rect",
+   "x": 585,
+   "y": 300,
+   "width": 200,
+   "height": 60,
+   "label": "查总览",
+   "fill": "rgba(255,255,255,0.10)",
+   "stroke": "#bc8cff",
+   "sublabel": "这个知识点有没有"
+  },
+  {
+   "id": "old",
+   "kind": "rect",
+   "x": 875,
+   "y": 160,
+   "width": 200,
+   "height": 60,
+   "label": "补出处和例题",
+   "fill": "rgba(255,255,255,0.10)",
+   "stroke": "#bc8cff",
+   "sublabel": "已有的知识点"
+  },
+  {
+   "id": "new",
+   "kind": "rect",
+   "x": 875,
+   "y": 300,
+   "width": 200,
+   "height": 60,
+   "label": "新建知识点",
+   "fill": "rgba(255,255,255,0.10)",
+   "stroke": "#bc8cff",
+   "sublabel": "总览里没有的"
+  },
+  {
+   "id": "write",
+   "kind": "double_rect",
+   "x": 1140,
+   "y": 215,
+   "width": 200,
+   "height": 60,
+   "label": "来源页 · 题目",
+   "fill": "rgba(255,255,255,0.10)",
+   "stroke": "#3fb950",
+   "sublabel": "更新总览、日志、导图"
+  },
+  {
+   "id": "tell",
+   "kind": "speech",
+   "x": 1140,
+   "y": 330,
+   "width": 200,
+   "height": 60,
+   "label": "告诉你",
+   "fill": "rgba(255,255,255,0.10)",
+   "stroke": "#f59e0b",
+   "sublabel": "新建 · 更新 · 待核对",
+   "flat": true
+  }
+ ],
+ "arrows": [
+  {
+   "id": "e1",
+   "source": "start",
+   "target": "bili",
+   "source_port": "right",
+   "target_port": "left",
+   "flow": "read"
+  },
+  {
+   "id": "e2",
+   "source": "start",
+   "target": "file",
+   "source_port": "right",
+   "target_port": "left",
+   "flow": "read"
+  },
+  {
+   "id": "e3",
+   "source": "bili",
+   "target": "read",
+   "source_port": "right",
+   "target_port": "left",
+   "flow": "write"
+  },
+  {
+   "id": "e4",
+   "source": "file",
+   "target": "read",
+   "source_port": "right",
+   "target_port": "left",
+   "flow": "write"
+  },
+  {
+   "id": "e5",
+   "source": "read",
+   "target": "check",
+   "source_port": "bottom",
+   "target_port": "top",
+   "flow": "control"
+  },
+  {
+   "id": "e6",
+   "source": "check",
+   "target": "old",
+   "source_port": "right",
+   "target_port": "left",
+   "flow": "control",
+   "label": "有"
+  },
+  {
+   "id": "e7",
+   "source": "check",
+   "target": "new",
+   "source_port": "right",
+   "target_port": "left",
+   "flow": "control",
+   "label": "没有"
+  },
+  {
+   "id": "e8",
+   "source": "old",
+   "target": "write",
+   "source_port": "right",
+   "target_port": "left",
+   "flow": "write"
+  },
+  {
+   "id": "e9",
+   "source": "new",
+   "target": "write",
+   "source_port": "right",
+   "target_port": "left",
+   "flow": "write"
+  },
+  {
+   "id": "e10",
+   "source": "write",
+   "target": "tell",
+   "source_port": "bottom",
+   "target_port": "top",
+   "flow": "read"
+  }
+ ],
+ "legend_orientation": "horizontal",
+ "legend_x": 48,
+ "legend_y": 440,
+ "legend_locked": false,
+ "legend": [
+  {
+   "flow": "read",
+   "label": "输入"
+  },
+  {
+   "flow": "write",
+   "label": "写进学习库"
+  },
+  {
+   "flow": "control",
+   "label": "先找后建"
+  }
+ ],
+ "footer": "入库不改掌握进度：资料里讲过不等于会了",
+ "footer_x": 48,
+ "footer_y": 490
+}
